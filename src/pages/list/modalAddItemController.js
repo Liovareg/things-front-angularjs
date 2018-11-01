@@ -17,7 +17,7 @@ angular.module('things')
             });
         console.log('List Controller', $ctrl);
 
-        $ctrl.saveItem = function () {
+        $ctrl.saveItem = () =>  {
             Upload.upload({
                 url: 'https://api.cloudinary.com/v1_1/hxfnxj17l/upload',
                 data: { file: $ctrl.newImage, upload_preset: 'xi1quxpr' }
@@ -39,7 +39,7 @@ angular.module('things')
                 console.log("OK!")
             }, function errorCallback(response) { console.log("Error88", response) })
         }
-        $ctrl.cancelAddNewItem = function () {
+        $ctrl.cancelAddNewItem = () =>  {
             $uibModalInstance.dismiss('cancel');
         };
     

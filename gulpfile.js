@@ -1,6 +1,6 @@
 'use strict';
 
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     watch = require('gulp-watch'),
     rigger = require('gulp-rigger'),
     concat = require('gulp-concat'),
@@ -13,7 +13,7 @@ var gulp = require('gulp'),
     babel = require('gulp-babel');
 
 
-var dependencies = [
+const dependencies = [
     "node_modules/angular/angular.js",
     "node_modules/angular-translate/dist/angular-translate.min.js",
     "node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js",
@@ -29,18 +29,18 @@ var dependencies = [
     "node_modules/angular-spinner/dist/angular-spinner.min.js"
 ];
 
-var dependenciesCss = [
+const dependenciesCss = [
     "node_modules/bootstrap/dist/css/bootstrap.css",
     "node_modules/bootstrap/dist/css/bootstrap-theme.css",
     "node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"
 ];
 
-gulp.task('html', function () {
+gulp.task('html', () => {
     return gulp.src('src/**/*.html')
         .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('js', function () {
+gulp.task('js', () => {
     return gulp.src(['src/app.js', 'src/**/*.js'])
         .pipe(ngAnnotate({
             remove: true,
@@ -52,52 +52,52 @@ gulp.task('js', function () {
         .pipe(gulp.dest('dist/scripts/'))
 });
 
-gulp.task('fonts', function () {
+gulp.task('fonts', () =>  {
     return gulp.src(['node_modules/bootstrap/fonts'])
         .pipe(gulp.dest('dist/'))
 });
 
-gulp.task('styles', function () {
+gulp.task('styles', () =>  {
     return gulp.src('src/**/*.css')
         .pipe(concat('style.css'))
         .pipe(gulp.dest('dist/styles/'))
 });
 
-gulp.task('copyDependenciesJS', function () {
+gulp.task('copyDependenciesJS', () =>  {
     return gulp.src(dependencies)
         .pipe(concat('vendor.js'))
         .pipe(gulp.dest('dist/scripts/'))
 });
 
-gulp.task('copyDependenciesCSS', function () {
+gulp.task('copyDependenciesCSS', () =>  {
     return gulp.src(dependenciesCss)
         .pipe(concat('vendor.css'))
         .pipe(gulp.dest('dist/styles/'))
 });
 
-gulp.task('copyFonts', function () {
+gulp.task('copyFonts', () =>  {
     return gulp.src('src/fonts/**.*')
         .pipe(gulp.dest('dist/fonts'))
 });
 
-gulp.task('copyJson', function () {
+gulp.task('copyJson', () =>  {
     return gulp.src('src/vocabulary/**.json')
         .pipe(gulp.dest('dist/vocabulary'))
 });
 
-gulp.task('watcher', function () {
+gulp.task('watcher', () =>  {
     gulp.watch('src/**/*.html', gulp.series('html'));
     gulp.watch('src/**/*.js', gulp.series('js'));
     gulp.watch('src/**/*.css', gulp.series('styles'));
     gulp.watch('src/**/*.json', gulp.series('copyJson'));
 });
 
-gulp.task('clean', function () {
+gulp.task('clean', () =>  {
     return gulp.src('dist', { read: false, allowEmpty: true })
         .pipe(clean());
 });
 
-gulp.task('connect', function () {
+gulp.task('connect', () =>  {
     return connect.server({
         root: 'dist',
         port: 8000

@@ -1,0 +1,27 @@
+<div class="list">
+    <div class="media">
+        <div class="media-left">
+            <a>
+                <img class="media-object itemImage" ng-src="{{$ctrl.item.imageUrl}}" alt="itemImage" />
+            </a>
+            <div class="btn-group">
+                <!-- Edit button -->
+                <button type="submit" class="btn btn-default btn-xs" ng-click="$ctrl.onEdit(item,$index)">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <!-- Delete button -->
+                <button type="submit" class="btn btn-default btn-xs" ng-click="$ctrl.onDelete($index)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">
+                <strong>{{$ctrl.item.name}}</strong>
+            </h4>
+            <p text-align="justify">
+                <em>{{$ctrl.item.description}}</em>
+            </p>
+        </div>
+    </div>
+</div>

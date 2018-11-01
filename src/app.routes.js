@@ -1,20 +1,16 @@
+/* @ngInject */
 angular.module('things')
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(($stateProvider, $urlRouterProvider) => {
         $urlRouterProvider.otherwise('/login')
 
-        var home = {
-            name: 'home',
-            url: '/',
-
-        };
-        var logIn = {
+        $stateProvider.state({
             name: 'logIn',
             url: '/login',
             templateUrl: 'pages/login/login.html',
             controller: 'LoginController',
             controllerAs: '$ctrl'
-        }
-        var list = {
+        })
+        .state({
             name: 'list',
             url: '/list',
             templateUrl: 'pages/list/list.html',
@@ -29,16 +25,12 @@ angular.module('things')
 
             controller: 'ListController',
             controllerAs: '$ctrl'
-        }
-        var registration = {
+        })
+        .state({
             name: 'registration',
             url: '/reg',
             templateUrl: 'pages/registration/registration.html',
             controller: 'RegController',
             controllerAs: '$ctrl'
-        }
-        $stateProvider.state(logIn);
-        $stateProvider.state(list);
-        $stateProvider.state(registration);
-        // $stateProvider.state(home);
+        })
     });

@@ -6,7 +6,7 @@ angular.module('things')
     }
 
 
-    $ctrl.logOut = function () {
+    $ctrl.logOut = () =>  {
       sessionStorage.clear()
     };
   }]);

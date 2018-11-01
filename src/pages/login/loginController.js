@@ -7,7 +7,7 @@ angular.module('things')
                 password: ""
             };
             $ctrl.error = AuthenticationService.error;
-            $ctrl.submit = function () {
+            $ctrl.submit = () =>  {
                 AuthenticationService.checkLog($ctrl.user)
                     .catch(function (error) {
                         console.log("Failed!", error);

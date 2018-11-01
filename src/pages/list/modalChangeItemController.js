@@ -12,7 +12,7 @@ angular.module('things')
                     console.log(response);
                 }, function errorCallback(response) { console.log("Error4", response) })
         };
-        $ctrl.cancel = function () {
+        $ctrl.cancel = () =>  {
             $uibModalInstance.dismiss('cancel');
         };
     }]);

@@ -33,7 +33,7 @@ angular.module('things')
     }
 
     // Modal window ADD ITEM
-    $ctrl.open = function () {
+    $ctrl.open = () =>  {
       var modalInstance = $uibModal.open({
         size: 'lg',
         templateUrl: "pages/list/addItemModal.html",
@@ -62,7 +62,7 @@ angular.module('things')
         controller: 'ModalChangeItemController',
         controllerAs: '$ctrl',
         resolve: {
-          copy: function () {
+          copy: () =>  {
             return $ctrl.itemCopy[index] = angular.copy(item);
           }
         }
@@ -75,7 +75,7 @@ angular.module('things')
 
     // Toggle style of the list
     $ctrl.toggle = true;
-    $ctrl.tog = function () {
+    $ctrl.tog = () =>  {
       $ctrl.toggle = !$ctrl.toggle;
     }
 

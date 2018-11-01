@@ -1,8 +1,8 @@
 angular.module('things')
     .component('thingsItem', {
-        templateUrl: 'pages/list/things-item.html',
+        templateUrl: './things-item.html',
         bindings: {
-            item: '=', 
+            item: '=',
             itemCopy: '<',
             index: '<',
             onDelete: '&',
