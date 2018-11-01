@@ -1,0 +1,39 @@
+<div class="perfect-centering">
+        <h1 align="center">Please SignUn</h1>
+    <form class="form-horizontal">
+        <div>
+            <div class="input-group">
+                <!-- <label class="control-label col-sm-2" for="pwd">{{'Name' | translate}}:</label> -->
+                <!-- <div class="col-sm-4"> -->
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Enter your name" name="pwd" ng-model="$ctrl.newUser.name">
+            </div>
+        </div>
+        <div class="input-group">
+            <!-- <label class="control-label col-sm-2" for="email">{{'Email' | translate}}:</label> -->
+            <!-- <div class="col-sm-4"> -->
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-envelope"></i>
+            </span>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" ng-model="$ctrl.newUser.email">
+        </div>
+        <div class="input-group">
+            <!-- <label class="control-label col-sm-2" for="pwd">{{'Password' | translate}}:</label> -->
+            <!-- <div class="col-sm-4"> -->
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-lock"></i>
+            </span>
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" ng-model="$ctrl.newUser.password">
+        </div>
+        <br>
+        <div class="btn-group btn-block ">
+            <!-- <div class="col-sm-offset-2 col-sm-10"> -->
+            <button type="submit" class="btn btn-primary btn-block" ng-click="$ctrl.saveNewUser()">{{'Ok' | translate}}</button>
+            <!-- <button type="reset" class="btn btn-warning btn-block" ui-sref="home" id="Cancel_btn" value="Cancel"> {{'Cancel_btn' | translate}}</button> -->
+            </div>
+        <!-- </div> -->
+</div>
+</form>
+</div>

@@ -1,0 +1,17 @@
+{
+    "Email": "Email",
+    "Password": "Password",
+    "Name":"Name",
+    "Ok":"Submit",
+    "Cancel_btn":"Cancel",
+    "Save_btn":"Save",
+    "LogIn_btn":"LogIn",
+    "SignUp_btn":"SignUp",
+    "List_btn":"Back to the List",
+    "LogOut_btn":"LogOut",
+    "Add_btn":"Add item",
+    "itemName":"Item Name",
+    "itemDescription":"Item description",
+    "addNewItem":"Add new item",
+    "Select_btn":"Select picture"
+  }

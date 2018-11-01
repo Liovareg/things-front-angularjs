@@ -1,0 +1,45 @@
+<div class="perfect-centering">
+    <h1 align="center">Please LogIn</h1>
+    <form class="form-horizontal" name="form" role="form">
+        <div>
+            <div class="input-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+                <!-- <label class="control-label col-sm-2" for="email">{{'Email' | translate}}:</label> -->
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                </span>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" class="form-control" ng-model="$ctrl.user.email"
+                    required>
+                <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">
+                    Email is required</span>
+            </div>
+            <div class="input-group " ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                <!-- <label class="control-label col-sm-2" for="pwd">{{'Password' | translate}}:</label> -->
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-lock"></i>
+                </span>
+                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" ng-model="$ctrl.user.password"
+                    required>
+                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">
+                    Password is required</span>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary btn-block" id="Ok" ng-click="$ctrl.submit()">{{'Ok' | translate}}</button>
+        </div>
+
+        <!-- <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span> -->
+
+        <div>
+            <div class="col-sm-offset-2 col-sm-10 btn-group">
+
+                <!-- <button type="reset" class="btn btn-default" id="Cancel_btn" value="Cancel"> {{'Cancel_btn' | translate}}</button> -->
+                <br>
+                <div>
+                    <h3 class="text-danger">
+                        <strong>{{$ctrl.error}}</strong>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>

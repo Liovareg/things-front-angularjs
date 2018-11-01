@@ -1,0 +1,50 @@
+<div>
+    <div>
+        <h2 align="center" id="title_eng">
+            <em>My {{$ctrl.data.length}} things list</em>
+        </h2>
+    </div>
+    <br>
+    <div class="container-fluid">
+        <!-- class="row col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-6"> -->
+        <div class= "">
+            <!-- Search item-->
+            <!-- <div class="col-sm-offset-1 col-sm-10"> -->
+            <form class="form-horizontal col-sm-4">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </span>
+                    <input ng-model="search" class="form-control">
+                </div>
+            </form>
+            <!-- Add item  button-->
+            <button type="button" class="btn btn-default" align="right" ng-click="$ctrl.open()">
+                    <span class="glyphicon glyphicon-plus">
+                    </span>
+                    {{'Add_btn' | translate}}</button>
+                </div>
+            <br>
+            <div class="col-sm-4">
+                    <button class="btn btn-default btn-md" ng-click="$ctrl.tog()">
+                            <span class="glyphicon glyphicon-align-justify"></span>
+                        </button>
+            </div>
+            
+
+
+       
+    </div>
+</div>
+</div>
+<br>
+<!-- List of items -->
+<div class="row">
+    <rch-item id="grid" ng-class="{'col-xs-6 col-md-4' : $ctrl.toggle }" ng-repeat="item in $ctrl.data| filterBy: ['name', 'description']: search"
+        item="item" itemCopy="itemCopy" index="$index" on-delete="$ctrl.deleteItem($index)" 
+        on-cancel="$ctrl.cancel($index)" on-edit="$ctrl.openChange(item, $index)">
+    </rch-item>
+
+</div>
+
+<!-- on-update="$ctrl.saveUpdatedItem($index)" -->
