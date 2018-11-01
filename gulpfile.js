@@ -9,35 +9,9 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     watch = require('gulp-watch'),
     clean = require('gulp-clean'),
-    connect = require('gulp-connect');
+    connect = require('gulp-connect'),
+    babel = require('gulp-babel');
 
-
-gulp.task('html', function () {
-    return gulp.src('src/**/*.html')
-        .pipe(gulp.dest('dist/'));
-});
-
-gulp.task('js', function () {
-    return gulp.src(['src/app.js', 'src/**/*.js'])
-        // .pipe(ngAnnotate({
-            // remove: true,
-            // add: true,
-            // single_quotes: true
-        // }))
-        .pipe(concat('main.js'))
-        .pipe(gulp.dest('dist/scripts/'))
-});
-
-gulp.task('fonts', function () {
-    return gulp.src(['node_modules/bootstrap/fonts'])
-        .pipe(gulp.dest('dist/'))
-});
-
-gulp.task('styles', function () {
-    return gulp.src('src/**/*.css')
-        .pipe(concat('style.css'))
-        .pipe(gulp.dest('dist/styles/'))
-});
 
 var dependencies = [
     "node_modules/angular/angular.js",
@@ -61,13 +35,41 @@ var dependenciesCss = [
     "node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"
 ];
 
-gulp.task('copyNpmDep', function () {
+gulp.task('html', function () {
+    return gulp.src('src/**/*.html')
+        .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('js', function () {
+    return gulp.src(['src/app.js', 'src/**/*.js'])
+        .pipe(ngAnnotate({
+            remove: true,
+            add: true,
+            single_quotes: true
+        }))
+        .pipe(babel())
+        .pipe(concat('main.js'))
+        .pipe(gulp.dest('dist/scripts/'))
+});
+
+gulp.task('fonts', function () {
+    return gulp.src(['node_modules/bootstrap/fonts'])
+        .pipe(gulp.dest('dist/'))
+});
+
+gulp.task('styles', function () {
+    return gulp.src('src/**/*.css')
+        .pipe(concat('style.css'))
+        .pipe(gulp.dest('dist/styles/'))
+});
+
+gulp.task('copyDependenciesJS', function () {
     return gulp.src(dependencies)
         .pipe(concat('vendor.js'))
         .pipe(gulp.dest('dist/scripts/'))
 });
 
-gulp.task('copyNpmDepCSS', function () {
+gulp.task('copyDependenciesCSS', function () {
     return gulp.src(dependenciesCss)
         .pipe(concat('vendor.css'))
         .pipe(gulp.dest('dist/styles/'))
@@ -86,7 +88,7 @@ gulp.task('copyJson', function () {
 gulp.task('watcher', function () {
     gulp.watch('src/**/*.html', gulp.series('html'));
     gulp.watch('src/**/*.js', gulp.series('js'));
-     gulp.watch('src/**/*.css', gulp.series('styles'));
+    gulp.watch('src/**/*.css', gulp.series('styles'));
     gulp.watch('src/**/*.json', gulp.series('copyJson'));
 });
 
@@ -102,7 +104,7 @@ gulp.task('connect', function () {
     });
 });
 
-gulp.task('build', gulp.series( 'clean', 'html', 'js', 'styles', 'copyNpmDep', 'copyNpmDepCSS', 'copyFonts', 'copyJson'));
+gulp.task('build', gulp.series('clean', 'html', 'js', 'styles', 'copyDependenciesJS', 'copyDependenciesCSS', 'copyFonts', 'copyJson'));
 
 gulp.task('main', gulp.parallel('watcher', 'connect'));
 
