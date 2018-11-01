@@ -1,6 +1,6 @@
-angular.module('rechi')
-    .component('rchItem', {
-        templateUrl: 'pages/list/rch-item.html',
+angular.module('things')
+    .component('thingsItem', {
+        templateUrl: 'pages/list/things-item.html',
         bindings: {
             item: '=', 
             itemCopy: '<',

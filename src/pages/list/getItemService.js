@@ -1,4 +1,4 @@
-angular.module('rechi')
+angular.module('things')
     .service('GetItemService', function ($http) {
         this.getItems = function () {
             return $http.get('https://rechi.herokuapp.com/items', {});

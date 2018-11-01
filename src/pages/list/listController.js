@@ -1,4 +1,4 @@
-angular.module('rechi')
+angular.module('things')
   .controller('ListController', ['$http', 'Upload', '$uibModal', 'GetItemService', 'usSpinnerService', function
    ($http, Upload, $uibModal, GetItemService, usSpinnerService) {
 

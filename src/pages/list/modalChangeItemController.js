@@ -1,4 +1,4 @@
-angular.module('rechi')
+angular.module('things')
     .controller('ModalChangeItemController', ['$http', 'copy', '$uibModal', '$uibModalInstance', function
 ($http, copy, $uibModal, $uibModalInstance) {
         var $ctrl = this;

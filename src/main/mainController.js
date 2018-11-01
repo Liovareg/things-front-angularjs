@@ -1,4 +1,4 @@
-angular.module('rechi')
+angular.module('things')
 .controller("MainController",["$scope","$translate" ,function($scope,$translate){
   var $ctrl = this;
   $ctrl.changeLanguage = function(lang){

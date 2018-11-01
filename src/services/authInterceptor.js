@@ -1,4 +1,4 @@
-angular.module('rechi')
+angular.module('things')
 .factory('authInterceptor', function ($rootScope, $q, $window) {
     return {
         request: function (config) {

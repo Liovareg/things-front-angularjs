@@ -1,4 +1,4 @@
-angular.module('rechi')
+angular.module('things')
     .controller('RegController', ['$scope', '$http', '$state', '$window',
         function ($scope, $http, $state, $window) {
             var $ctrl = this;

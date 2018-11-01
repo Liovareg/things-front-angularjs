@@ -1,4 +1,4 @@
-angular.module('rechi')
+angular.module('things')
     .controller('LoginController', ['$scope', '$http', '$state', 'AuthenticationService', '$window',"$translate",
         function ($scope, $http, $state, AuthenticationService, $window, $translate) {
             var $ctrl = this;

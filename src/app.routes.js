@@ -1,4 +1,4 @@
-angular.module('rechi')
+angular.module('things')
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/login')
 

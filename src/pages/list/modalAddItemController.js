@@ -1,4 +1,4 @@
-angular.module('rechi')
+angular.module('things')
     .controller('ModalAddItemController', ['$http', 'Upload', '$uibModal', 'GetItemService', '$uibModalInstance', function
 ($http, Upload, $uibModal, GetItemService, $uibModalInstance) {
         var $ctrl = this;

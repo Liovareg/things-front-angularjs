@@ -1,4 +1,4 @@
-angular.module('rechi')
+angular.module('things')
     .config(function ($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
     })
