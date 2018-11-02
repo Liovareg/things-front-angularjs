@@ -1,9 +1,9 @@
+/* @ngInject */
 angular.module('things')
-    .controller('ModalChangeItemController', ['$http', 'copy', '$uibModal', '$uibModalInstance', function
-($http, copy, $uibModal, $uibModalInstance) {
+    .controller('ModalChangeItemController', function ($http, copy, $uibModal, $uibModalInstance) {
         var $ctrl = this;
         $ctrl.item = copy;
-        console.log($ctrl.item);
+
         $ctrl.save = function (item) {
             $http.put('https://rechi.herokuapp.com/items/' + $ctrl.item.id, $ctrl.item)
                 .then(function successCallback(response) {
@@ -12,7 +12,8 @@ angular.module('things')
                     console.log(response);
                 }, function errorCallback(response) { console.log("Error4", response) })
         };
-        $ctrl.cancel = () =>  {
+
+        $ctrl.cancel = () => {
             $uibModalInstance.dismiss('cancel');
         };
-    }]);
+    });

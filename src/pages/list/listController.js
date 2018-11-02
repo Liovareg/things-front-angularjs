@@ -1,39 +1,41 @@
+/* @ngInject */
 angular.module('things')
-  .controller('ListController', ['$http', 'Upload', '$uibModal', 'GetItemService', 'usSpinnerService', function
-   ($http, Upload, $uibModal, GetItemService, usSpinnerService) {
+  .controller('ListController', ($http, Upload, $uibModal, GetItemService, usSpinnerService) => {
 
     var $ctrl = this;
-
     $ctrl.itemCopy = [];
-    usSpinnerService.stop();
-    GetItemService.getItems()
-      .then(function successCallback(list) {
-        $ctrl.data = list.data
-      }, function errorCallback(list) {
-        console.log('Error during GET /items', list);
-      });
-    console.log('List Controller', $ctrl);
+    $ctrl.toggle = true;
 
-    $ctrl.deleteItem = function (index) {
+    usSpinnerService.stop();
+
+    GetItemService.getItems().then((list) => {
+      $ctrl.data = list.data
+    }).catch((list) => {
+      console.log('Error during GET /items', list);
+    });
+
+    $ctrl.deleteItem = (index) => {
       $http.delete('https://rechi.herokuapp.com/items/' + $ctrl.data[index].id)
-        .then(function successCallback(response) {
+        .then((response) => {
           $ctrl.data.splice(index, 1);
-          console.log("Item was deleted!")
-        }, function errorCallback(response) { console.log("Error3: Item was not deleted!", response) })
+        }).catch((error) => {
+          console.log('Error during item delete', error)
+        })
     };
 
-    $ctrl.uploadTest = function (file) {
+    $ctrl.uploadTest = (file) => {
       Upload.upload({
         url: 'https://api.cloudinary.com/v1_1/hxfnxj17l/upload',
         data: { file: file, upload_preset: 'xi1quxpr' }
-      }).then(function successCallback(response) {
+      }).then((response) => {
+
+        /* TODO WHAT HERE? */
         console.log(response);
         console.log("OK!")
-      }, function errorCallback(response) { console.log("Error88", response) })
+      }).catch((response) => { console.log('Error during file upload', response) })
     }
 
-    // Modal window ADD ITEM
-    $ctrl.open = () =>  {
+    $ctrl.open = () => {
       var modalInstance = $uibModal.open({
         size: 'lg',
         templateUrl: "pages/list/addItemModal.html",
@@ -46,38 +48,33 @@ angular.module('things')
         controllerAs: '$ctrl'
       })
 
-      modalInstance.result.then(function (item) {
-        console.log('Result 111', item)
+      modalInstance.result.then((item) => {
         $ctrl.data.push(item);
-      }).catch(function (error) {
-        console.log("Failed!", error);
+      }).catch((error) => {
+        console.log('Modal window failed!', error);
       });
     };
 
     // Modal window CHANGE ITEM
-    $ctrl.openChange = function (item, index) {
+    $ctrl.openChange = (item, index) => {
       var modalInstance = $uibModal.open({
         size: 'lg',
         templateUrl: "pages/list/changeItemModal.html",
         controller: 'ModalChangeItemController',
         controllerAs: '$ctrl',
         resolve: {
-          copy: () =>  {
-            return $ctrl.itemCopy[index] = angular.copy(item);
-          }
+          copy: () => $ctrl.itemCopy[index] = angular.copy(item)
         }
-      })
-      modalInstance.result.then(function (response) {
-        console.log('Result 11122', response)
+      });
+
+      modalInstance.result.then((response) => {
         $ctrl.data[index] = response.data;
       })
     };
 
     // Toggle style of the list
-    $ctrl.toggle = true;
-    $ctrl.tog = () =>  {
+    $ctrl.tog = () => {
       $ctrl.toggle = !$ctrl.toggle;
     }
-
-  }])
+  })
 

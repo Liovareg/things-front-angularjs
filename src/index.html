@@ -1,4 +1,4 @@
-<html ng-app="rechi">
+<html ng-app="things">
 <script src="scripts/vendor.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="styles/vendor.css">
@@ -14,16 +14,18 @@
 <body>
   <div ng-controller="MainController as $ctrl">
     <nav class="navbar navbar-default">
-      <div class="container-fluid" >
+      <div class="container-fluid">
         <div>
           <a ui-sref="home">
             <img src="https://i.imgur.com/c5XJsYW.jpg" style="width:100px;height:48px;">
           </a>
           <div class="btn-group">
             <button type="button" class="btn btn-default" id="LogIn_btn" ui-sref="logIn">{{'LogIn_btn' | translate}}</button>
-            <button type="button" class="btn btn-default" id="SignUp_btn" ui-sref="registration">{{'SignUp_btn' | translate}}</button>
+            <button type="button" class="btn btn-default" id="SignUp_btn" ui-sref="registration">{{'SignUp_btn' |
+              translate}}</button>
             <button type="button" class="btn btn-default" id="List_btn" ui-sref="list">{{'List_btn' | translate}}</button>
-            <button type="button" class="btn btn-default" id="LogOut_btn" ui-sref="logIn" ng-click="$ctrl.logOut()">{{'LogOut_btn' | translate}}</button>
+            <button type="button" class="btn btn-default" id="LogOut_btn" ui-sref="logIn" ng-click="$ctrl.logOut()">{{'LogOut_btn'
+              | translate}}</button>
           </div>
           <div class="btn-group">
             <button type="button" class="btn btn-default" id="en" ng-click="$ctrl.changeLanguage('en')">EN</button>
@@ -32,9 +34,9 @@
         </div>
       </div>
     </nav>
-    
+
     <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
-    
+
     <ui-view></ui-view>
   </div>
 </body>

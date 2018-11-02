@@ -1,38 +1,35 @@
 'use strict';
 
 const gulp = require('gulp'),
-    watch = require('gulp-watch'),
-    rigger = require('gulp-rigger'),
     concat = require('gulp-concat'),
     ngAnnotate = require('gulp-ng-annotate'),
-    gnf = require('gulp-npm-files'),
     uglify = require('gulp-uglify'),
-    watch = require('gulp-watch'),
     clean = require('gulp-clean'),
     connect = require('gulp-connect'),
     babel = require('gulp-babel');
 
 
 const dependencies = [
-    "node_modules/angular/angular.js",
-    "node_modules/angular-translate/dist/angular-translate.min.js",
-    "node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js",
-    "node_modules/angular-filter/dist/angular-filter.min.js",
-    "node_modules/angular-route/angular-route.js",
-    "node_modules/@uirouter/angularjs/release/angular-ui-router.js",
-    "node_modules/jquery/dist/jquery.min.js",
-    "node_modules/bootstrap/dist/js/bootstrap.min.js",
-    "node_modules/ng-file-upload/dist/ng-file-upload.min.js",
-    "node_modules/angular-component/dist/angular-component.js",
-    "node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js",
-    "node_modules/angular-ui-bootstrap/template/modal/window.html.js",
-    "node_modules/angular-spinner/dist/angular-spinner.min.js"
+    'node_modules/bluebird/js/browser/bluebird.js',
+    'node_modules/angular/angular.js',
+    'node_modules/angular-translate/dist/angular-translate.min.js',
+    'node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js',
+    'node_modules/angular-filter/dist/angular-filter.min.js',
+    'node_modules/angular-route/angular-route.js',
+    'node_modules/@uirouter/angularjs/release/angular-ui-router.js',
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/bootstrap/dist/js/bootstrap.min.js',
+    'node_modules/ng-file-upload/dist/ng-file-upload.min.js',
+    'node_modules/angular-component/dist/angular-component.js',
+    'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
+    'node_modules/angular-ui-bootstrap/template/modal/window.html.js',
+    'node_modules/angular-spinner/dist/angular-spinner.min.js'
 ];
 
 const dependenciesCss = [
-    "node_modules/bootstrap/dist/css/bootstrap.css",
-    "node_modules/bootstrap/dist/css/bootstrap-theme.css",
-    "node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"
+    'node_modules/bootstrap/dist/css/bootstrap.css',
+    'node_modules/bootstrap/dist/css/bootstrap-theme.css',
+    'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css'
 ];
 
 gulp.task('html', () => {

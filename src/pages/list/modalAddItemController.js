@@ -1,6 +1,6 @@
+/* @ngInject */
 angular.module('things')
-    .controller('ModalAddItemController', ['$http', 'Upload', '$uibModal', 'GetItemService', '$uibModalInstance', function
-($http, Upload, $uibModal, GetItemService, $uibModalInstance) {
+    .controller('ModalAddItemController', function ($http, Upload, $uibModal, GetItemService, $uibModalInstance) {
         var $ctrl = this;
         $ctrl.newItem = {
             name: " ",
@@ -10,37 +10,36 @@ angular.module('things')
         $ctrl.newImage = null;
 
         GetItemService.getItems()
-            .then(function successCallback(list) {
+            .then(list => {
                 $ctrl.data = list.data;
-            }, function errorCallback(list) {
+            }).catch(list => {
                 console.log('Error during GET /items', list);
             });
-        console.log('List Controller', $ctrl);
 
-        $ctrl.saveItem = () =>  {
+        $ctrl.saveItem = () => {
             Upload.upload({
                 url: 'https://api.cloudinary.com/v1_1/hxfnxj17l/upload',
                 data: { file: $ctrl.newImage, upload_preset: 'xi1quxpr' }
-            }).then(function successCallback(response) {
-                console.log(response);
+            }).then(response => {
                 $ctrl.newItem.imageUrl = response.data.secure_url;
+
+                // TODO What?
                 $uibModalInstance.close(GetItemService.addItem($ctrl.newItem))
-                        $uibModalInstance.close(response.data);
-                        console.log(response);
-            }, function errorCallback(response) { console.log("ErrorCL", response) })
+                $uibModalInstance.close(response.data);
+            }).catch(response => { console.log('Error while uploading file to Cloudinary', response) })
         };
 
         $ctrl.uploadTest = function (file) {
             Upload.upload({
                 url: 'https://api.cloudinary.com/v1_1/hxfnxj17l/upload',
                 data: { file: file, upload_preset: 'xi1quxpr' }
-            }).then(function successCallback(response) {
+            }).then(response => {
                 console.log(response);
                 console.log("OK!")
-            }, function errorCallback(response) { console.log("Error88", response) })
+            }).catch(response => { console.log("Error88", response) })
         }
-        $ctrl.cancelAddNewItem = () =>  {
+        $ctrl.cancelAddNewItem = () => {
             $uibModalInstance.dismiss('cancel');
         };
-    
-    }]);
+
+    });
