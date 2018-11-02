@@ -1,16 +1,15 @@
 /* @ngInject */
 angular.module('things')
-    .controller('ModalChangeItemController', function ($http, copy, $uibModal, $uibModalInstance) {
+    .controller('ModalChangeItemController', function ($http, copy, SETTINGS, $uibModalInstance) {
         var $ctrl = this;
         $ctrl.item = copy;
 
         $ctrl.save = function (item) {
-            $http.put('https://rechi.herokuapp.com/items/' + $ctrl.item.id, $ctrl.item)
-                .then(function successCallback(response) {
-                    console.log("Item was udated!", response, $ctrl.item);
+            $http.put(`${SETTINGS.API.URL}/items/` + $ctrl.item.id, $ctrl.item)
+                .then(response => {
                     $uibModalInstance.close(response);
-                    console.log(response);
-                }, function errorCallback(response) { console.log("Error4", response) })
+                })
+                .catch(response => { console.log('Error while saving item', response) })
         };
 
         $ctrl.cancel = () => {

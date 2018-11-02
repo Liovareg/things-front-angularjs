@@ -1,6 +1,6 @@
 /* @ngInject */
 angular.module('things')
-    .controller('RegController', function ($http, $state) {
+    .controller('RegController', function ($http, $state, SETTINGS) {
         var $ctrl = this;
 
         $ctrl.newUser = {
@@ -10,7 +10,7 @@ angular.module('things')
         };
 
         $ctrl.saveNewUser = function (newUser) {
-            $http.post('https://rechi.herokuapp.com/users', $ctrl.newUser)
+            $http.post(`${SETTINGS.API.URL}/users`, $ctrl.newUser)
                 .then(() => $state.go('list'))
                 .catch(response => { console.log('Error while shignup', response) });
         }

@@ -1,8 +1,8 @@
 /* @ngInject */
 angular.module('things')
-  .controller('ListController', ($http, Upload, $uibModal, GetItemService, usSpinnerService) => {
+  .controller('ListController', function ($http, Upload, $uibModal, GetItemService, usSpinnerService, SETTINGS) {
 
-    var $ctrl = this;
+    const $ctrl = this;
     $ctrl.itemCopy = [];
     $ctrl.toggle = true;
 
@@ -15,7 +15,7 @@ angular.module('things')
     });
 
     $ctrl.deleteItem = (index) => {
-      $http.delete('https://rechi.herokuapp.com/items/' + $ctrl.data[index].id)
+      $http.delete(`${SETTINGS.API.URL}/items/` + $ctrl.data[index].id)
         .then((response) => {
           $ctrl.data.splice(index, 1);
         }).catch((error) => {
@@ -25,20 +25,20 @@ angular.module('things')
 
     $ctrl.uploadTest = (file) => {
       Upload.upload({
-        url: 'https://api.cloudinary.com/v1_1/hxfnxj17l/upload',
-        data: { file: file, upload_preset: 'xi1quxpr' }
+        url: SETTINGS.CLOUDINARY.URL,
+        data: { file: file, upload_preset: SETTINGS.CLOUDINARY.UPLOAD_PRESET }
       }).then((response) => {
 
         /* TODO WHAT HERE? */
         console.log(response);
-        console.log("OK!")
+        console.log('OK!')
       }).catch((response) => { console.log('Error during file upload', response) })
     }
 
     $ctrl.open = () => {
       var modalInstance = $uibModal.open({
         size: 'lg',
-        templateUrl: "pages/list/addItemModal.html",
+        templateUrl: 'pages/list/addItemModal.html',
         resolve: {
           list: function (GetItemService) {
             return GetItemService.getItems();
@@ -48,7 +48,8 @@ angular.module('things')
         controllerAs: '$ctrl'
       })
 
-      modalInstance.result.then((item) => {
+      modalInstance.result.then(item => {
+        console.log('Adding item', item)
         $ctrl.data.push(item);
       }).catch((error) => {
         console.log('Modal window failed!', error);
@@ -59,7 +60,7 @@ angular.module('things')
     $ctrl.openChange = (item, index) => {
       var modalInstance = $uibModal.open({
         size: 'lg',
-        templateUrl: "pages/list/changeItemModal.html",
+        templateUrl: 'pages/list/changeItemModal.html',
         controller: 'ModalChangeItemController',
         controllerAs: '$ctrl',
         resolve: {

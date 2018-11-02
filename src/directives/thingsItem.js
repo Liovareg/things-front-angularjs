@@ -1,6 +1,6 @@
 angular.module('things')
     .component('thingsItem', {
-        templateUrl: './things-item.html',
+        templateUrl: 'directives/things-item.html',
         bindings: {
             item: '=',
             itemCopy: '<',

@@ -1,10 +1,10 @@
 /*  @ngInject */
 angular.module('things')
-    .factory('authInterceptor', function ($rootScope, $q, $window) {
+    .factory('authInterceptor', function (SETTINGS, $window) {
         return {
             request: function (config) {
                 config.headers = config.headers || {};
-                if ($window.sessionStorage.token && config.url.indexOf('cloudinary') === -1) {
+                if ($window.sessionStorage.token && config.url !== SETTINGS.CLOUDINARY.URL) {
                     config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
                 }
                 return config;

@@ -1,10 +1,10 @@
 /* @ngInject */
 angular.module('things')
-    .service('GetItemService', function ($http) {
+    .service('GetItemService', function ($http, SETTINGS) {
         this.getItems = () =>  {
-            return $http.get('https://rechi.herokuapp.com/items', {});
+            return $http.get(`${SETTINGS.API.URL}/items`, {});
         }
         this.addItem = (newItem) => {
-            return $http.post('https://rechi.herokuapp.com/items', newItem)
+            return $http.post(`${SETTINGS.API.URL}/items`, newItem)
         }
     });

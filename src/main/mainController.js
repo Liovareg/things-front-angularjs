@@ -1,13 +1,13 @@
 /* @ngInject */
 angular.module('things')
-  .controller("MainController", ["$scope", "$translate", function ($scope, $translate) {
+  .controller('MainController', function ($translate) {
     const $ctrl = this;
 
     $ctrl.changeLanguage = (lang) => {
       $translate.use(lang);
     }
 
-    $ctrl.logOut = () =>  {
+    $ctrl.logOut = () => {
       sessionStorage.clear()
     };
-  }]);
+  });

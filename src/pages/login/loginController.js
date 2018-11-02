@@ -1,6 +1,6 @@
 /* @ngInject */
 angular.module('things')
-    .controller('LoginController', function ($scope, $http, $state, AuthenticationService, $window, $translate) {
+    .controller('LoginController', function ($state, AuthenticationService) {
         var $ctrl = this;
         $ctrl.user = {
             email: "",
